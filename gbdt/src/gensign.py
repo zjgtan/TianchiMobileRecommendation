@@ -17,7 +17,7 @@ for line in sys.stdin:
     ins = []
     for feature, value in features.iteritems():
         feature_idx = feature_idx_dict[feature]
-        ins.append("%s:%f" % (featrue_idx, value))
+        ins.append("%s:%f" % (feature_idx, value))
 
     print "%s %s" % (label, " ".join(ins))
 
