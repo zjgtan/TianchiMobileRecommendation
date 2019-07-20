@@ -1,5 +1,6 @@
 # coding: utf8
 import re
+import sys
 
 def load_user_behavior(filename):
     user_behavior_dict = {}
@@ -34,25 +35,47 @@ def do_daily_behavior_count(user_behavior_dict, type):
 
     return behavior_count_dict
 
-def do_aggregate_behavior_count(user_behavior_count_dict, window_size):
-    aggregate_count_dict = {}
-    user_behavior_count_list = sorted(user_behavior_count_dict.items(), key = lambda (x, y): x)
-    for i in range(len(user_behavior_count_list)):
-        for 
+def do_daily_count_sum(last_nday_daily_counts):
+    daily_count_sum_dict = {}
+    for daily_count_dict in last_nday_daily_counts:
+        for behavior_type, count_dict in daily_count_sum:
+            daily_count_sum_dict.setdefault(behavior_type, {})
+            for key, count in count_dict.iteritems():
+                daily_count_sum_dict[behavior_type].setdefault(key, 0)
+                daily_count_sum_dict[behavior_type][key] += count
 
+    return daily_count_sum_dict
+
+
+def do_last_nday_sum(daily_count_dict, window_size):
+    lasy_nday_sum_dict = {}
+    daily_count_list = sorted(daily_count_dict.iteritems(), key = lambda (x, y): x)
+
+    for i in range(7, len(daily_count_list)):
+        date = daily_count_list[i][0]
+        last_nday_daily_counts = [daily_count_list[j][1] for j in range(i - window_size, i)]
+        last_nday_sum_dict[date] = do_daily_count_sum(last_nday_daily_counts)
+
+    return last_nday_sum_dict
 
 def main():
+    print >> sys.stderr, "load user behavior"
     user_behavior_dict = load_user_behavior("./data/tianchi_fresh_comp_train_user.csv")
+    print >> sys.stderr, "daily user item behavior count"
     daily_user_item_behavior_count_dict = do_daily_behavior_count(user_behavior_dict, "userid_itemid")
+    print >> sys.stderr, "daily user itemcate behavior count"
     daily_user_itemcate_behavior_count_dict = do_daily_behavior_count(user_behavior_dict, "userid_itemcate")
 
-
     # 统计特征
-    user_item_behavior_aggregate_count_dict = {}
+    print >> sys.stderr, "sum last nday user item behavior"
+    last_nday_user_item_behavior_sum_dict = {}
     for window_size in [1, 3, 7]:
         last_nday_user_item_behavior_sum_dict[window_size] = do_last_nday_behavior_sum(daily_user_item_behavior_count_dict, window_size)
-        
-    
+
+    print >> sys.stderr, "sum last nday user itemcate behavior"
+    last_nday_user_itemcate_behavior_sum_dict = {}
+    for window_size in [1, 3, 7]:
+        last_nday_user_itemcate_behavior_sum_dict[window_size] = do_last_nday_behavior_sum(daily_user_itemcate_behavior_count_dict, window_size)
 
 if __name__ == "__main__":
     main()
