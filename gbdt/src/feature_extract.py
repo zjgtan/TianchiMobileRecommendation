@@ -11,9 +11,7 @@ def load_lastnday_behavior_data(filename):
         window_size, date, behavior_type, key, count = line.rstrip().split("\t")
         lastnday_behavior_dict.setdefault(key, {})
         lastnday_behavior_dict[key].setdefault(date, {})
-        lastnday_behavior_dict[key][date].setdefault(behavior_type, {})
-
-
+        lastnday_behavior_dict[key][date][behavior_type] = int(count)
     return lastnday_behavior_dict
 
 def main():
