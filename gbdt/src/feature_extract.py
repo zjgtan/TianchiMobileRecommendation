@@ -18,10 +18,15 @@ def load_lastnday_behavior_data(filename):
 
 def main():
     lastnday_behavior_dict = {}
+    print >> sys.stderr, "load lastnday user behavior"
     lastnday_behavior_dict["userid"] = load_lastnday_behavior_data("./data/last_nday_user_behavior_sum.txt")
+    print >> sys.stderr, "load lastnday item behavior"
     lastnday_behavior_dict["itemid"] = load_lastnday_behavior_data("./data/last_nday_item_behavior_sum.txt")
+    print >> sys.stderr, "load lastnday itemcate behavior"
     lastnday_behavior_dict["itemcate"] = load_lastnday_behavior_data("./data/last_nday_itemcate_behavior_sum.txt")
+    print >> sys.stderr, "load lastnday user item behavior"
     lastnday_behavior_dict["userid_itemid"] = load_lastnday_behavior_data("./data/last_nday_user_item_behavior_sum.txt")
+    print >> sys.stderr, "load lastnday user itemcate behavior"
     lastnday_behavior_dict["userid_itemcate"] = load_lastnday_behavior_data("./data/last_nday_user_itemcate_behavior_sum.txt")
 
     for line in sys.stdin:
