@@ -73,10 +73,10 @@ def do_last_nday_sum(daily_count_dict, window_size):
 
 def last_nday_sum_dict_to_file(last_nday_sum_dict, filename):
     fd = open(filename, "w")
-    for window_size in last_nday_user_item_behavior_sum_dict:
-        for date in last_nday_user_item_behavior_sum_dict[window_size]:
-            for behavior_type in last_nday_user_item_behavior_sum_dict[window_size][date]:
-                for key, value in last_nday_user_item_behavior_sum_dict[window_size][date][behavior_type].iteritems():
+    for window_size in last_nday_sum_dict:
+        for date in last_nday_sum_dict[window_size]:
+            for behavior_type in last_nday_sum_dict[window_size][date]:
+                for key, value in last_nday_sum_dict[window_size][date][behavior_type].iteritems():
                     print >> fd, "%d\t%s\t%s\t%s\t%d" % (window_size, date, behavior_type, key, value)
 
 def main():
