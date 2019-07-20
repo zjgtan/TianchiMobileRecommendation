@@ -77,7 +77,7 @@ def main():
     print >> sys.stderr, "sum last nday user item behavior"
     last_nday_user_item_behavior_sum_dict = {}
     for window_size in [1, 3, 7]:
-        last_nday_user_item_behavior_sum_dict[window_size] = do_last_nday_behavior_sum(daily_user_item_behavior_count_dict, window_size)
+        last_nday_user_item_behavior_sum_dict[window_size] = do_last_nday_sum(daily_user_item_behavior_count_dict, window_size)
 
     print >> sys.stderr, "sum last nday user itemcate behavior"
     last_nday_user_itemcate_behavior_sum_dict = {}
