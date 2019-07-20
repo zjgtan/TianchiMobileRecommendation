@@ -45,7 +45,7 @@ def do_daily_behavior_count(user_behavior_dict, type):
 def do_daily_count_sum(last_nday_daily_counts):
     daily_count_sum_dict = {}
     for daily_count_dict in last_nday_daily_counts:
-        for behavior_type, count_dict in daily_count_sum:
+        for behavior_type, count_dict in daily_count_dict.iteritems():
             daily_count_sum_dict.setdefault(behavior_type, {})
             for key, count in count_dict.iteritems():
                 daily_count_sum_dict[behavior_type].setdefault(key, 0)
