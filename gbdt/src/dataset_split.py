@@ -81,8 +81,10 @@ def main():
     print >> sys.stderr, "get user item label"
     daily_user_item_label_list = get_user_item_label_data(daily_user_behavior_list)
 
+    print >> sys.stderr, "get offline val"
     offline_val_data = get_offline_val_data(daily_user_behavior_list, item_subset)
 
+    print >> sys.stderr, "output"
     offline_train_fd = open("./data/offline_train.dat", "w")
     offline_test_fd = open("./data/offline_test.dat", "w")
     offline_evaluation_fd = open("./data/offline_val_dat", "w")
