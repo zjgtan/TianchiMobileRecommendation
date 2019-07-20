@@ -55,7 +55,7 @@ def do_daily_count_sum(last_nday_daily_counts):
 
 
 def do_last_nday_sum(daily_count_dict, window_size):
-    lasy_nday_sum_dict = {}
+    last_nday_sum_dict = {}
     daily_count_list = sorted(daily_count_dict.iteritems(), key = lambda (x, y): x)
 
     for i in range(7, len(daily_count_list)):
