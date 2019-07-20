@@ -2,6 +2,8 @@
 """Usage:
    划分数据集
 """
+import sys
+
 def load_user_behavior(filename):
     user_behavior_dict = {}
     # 初始化日期
