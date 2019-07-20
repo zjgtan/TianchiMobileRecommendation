@@ -4,6 +4,7 @@
 """
 import sys
 import datetime
+import re
 
 def load_user_behavior(filename):
     user_behavior_dict = {}
