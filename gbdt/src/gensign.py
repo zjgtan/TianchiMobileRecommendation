@@ -4,6 +4,7 @@
 """
 
 import sys
+import json
 
 feature_idx_dict = {}
 for line in file("./conf/feature_idx.txt"):
@@ -12,6 +13,7 @@ for line in file("./conf/feature_idx.txt"):
 
 for line in sys.stdin:
     date, userid_itemid, label, features = line.rstrip().split("\t")
+    features = json.loads(features)
     ins = []
     for feature, value in features.iteritems():
         feature_idx = feature_idx_dict[feature]
