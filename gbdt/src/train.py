@@ -2,7 +2,7 @@
 """Usage:
     模型训练
 """
-
+import sys
 import xgboost as xgb
 
 # 训练集
