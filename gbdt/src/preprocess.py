@@ -1,9 +1,16 @@
 # coding: utf8
 import re
 import sys
+import datetime
 
 def load_user_behavior(filename):
     user_behavior_dict = {}
+    # 初始化日期
+    date = "20141118"
+    while int(date) <= 20141218:
+        user_behavior_dict[date] = {}
+        date = (datetime.datetime.strptime(date, "%Y%m%d") + datetime.timedelta(1)).strftime("%Y%m%d")
+    
     for ix, line in enumerate(file(filename)):
         if ix == 0:
             continue
